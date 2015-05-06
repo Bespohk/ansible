@@ -1,0 +1,13 @@
+---
+- name: Install default packages
+  sudo: True
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - "{{ common_defaults }}"
+
+- name: Install user defined packages
+  sudo: True
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - "{{ common_packages }}"
+  when: common_packages

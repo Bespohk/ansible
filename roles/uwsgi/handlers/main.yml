@@ -1,0 +1,4 @@
+---
+- name: restart uwsgi
+  sudo: True
+  service: name=uwsgi state=restarted

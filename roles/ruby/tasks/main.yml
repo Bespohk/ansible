@@ -1,0 +1,12 @@
+---
+- name: Install Ruby
+  sudo: True
+  apt:
+    name: "ruby{{ ruby_version }}"
+    state: latest
+
+- name: Install specified gems from RubyGems
+  sudo: True
+  command: gem install --no-verbose --conservative {{ item }}
+  with_flattened:
+    - ruby_gems

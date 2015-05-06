@@ -1,0 +1,51 @@
+---
+- name: Install
+  sudo: True
+  apt: pkg=apache2 state=installed
+  notify: restart apache
+  tags:
+    - apache
+
+- name: Enable mods
+  sudo: True
+  command: a2enmod {{ item }}
+  with_items:
+    - "{{ apache_mods.enable }}"
+  when: apache_mods.enable
+  tags:
+    - apache
+
+- name: Disable mods
+  sudo: True
+  command: a2dismod {{ item }}
+  with_items:
+    - "{{ apache_mods.enable }}"
+  when: apache_mods.disable
+  tags:
+    - apache
+
+
+- name: Replace updated apache2.conf file
+  sudo: True
+  template: >
+    src=apache2.conf.j2
+    dest={{ apache_path_conf }}
+    owner={{ apache_owner }}
+    group={{ apache_group }}
+    mode={{ apache_mode }}
+  notify: reload apache
+  tags:
+    - apache
+
+- name: Remove Default Site Configuration
+  sudo: True
+  file: path={{ apache_path_default_site }} state=absent
+  notify: reload apache
+  tags:
+    - apache
+
+- name: Remove Default HTML
+  sudo: True
+  file: path={{ apache_path_www_root }} state=absent
+  tags:
+    - apache

@@ -1,0 +1,4 @@
+---
+ - name: change shell
+   sudo: True
+   user: name={{user}} shell=/bin/zsh

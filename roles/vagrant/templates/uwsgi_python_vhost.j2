@@ -1,0 +1,14 @@
+uwsgi:
+    master: true
+    processes: 1
+    vaccum: true
+    chmod-socket: 666
+    uid: {{ vagrant.uwsgi_owner }}
+    gid: {{ vagrant.uwsgi_group }}
+    socket: /tmp/uwsgi.{{ vagrant.package }}.sock
+    chdir: /var/www/{{ vagrant.package }}
+    logoto: /var/www/data/logs/error.log
+    home: /var/virtualenvs/{{ vagrant.python_release_version }}
+    pythonpath: /var/www
+    module: {{ vagrant.module }}
+    touch-reload: /var/www/{{ vagrant.package }}/{{ vagrant.module }}.py

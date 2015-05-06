@@ -1,0 +1,20 @@
+---
+- name: Check apt last update
+  sudo: True
+  stat: path=/var/cache/apt
+  register: apt_cache_stat
+  tags:
+    - apt
+
+- name: Update apt cache if needed
+  sudo: True
+  apt: update_cache=yes
+  when: (ansible_date_time.epoch|float - apt_cache_stat.stat.mtime > 60*60*12) or apt_update_force
+  tags:
+    - apt
+
+- name: Update the languages
+  sudo: True
+  apt: pkg={{ apt_language }} state=installed
+  tags:
+    - apt

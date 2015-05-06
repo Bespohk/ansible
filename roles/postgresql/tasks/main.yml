@@ -1,0 +1,10 @@
+---
+- name: Install
+  sudo: True
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - postgresql-client
+  tags:
+    - postgresql
