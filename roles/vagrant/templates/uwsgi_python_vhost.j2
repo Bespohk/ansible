@@ -8,7 +8,7 @@ uwsgi:
     socket: /tmp/uwsgi.{{ vagrant.package }}.sock
     chdir: /var/www/{{ vagrant.package }}
     logoto: /var/www/data/logs/error.log
-    home: /var/virtualenvs/{{ vagrant.python_release_version }}
+    home: ~/.virtualenvs/{{ vagrant.python_release_version }}
     pythonpath: /var/www
     module: {{ vagrant.module }}
     touch-reload: /var/www/{{ vagrant.package }}/{{ vagrant.module }}.py

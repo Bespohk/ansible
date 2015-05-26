@@ -19,6 +19,6 @@
   tags:
     - vagrant
 
-- name: Restart php-fpm
-  sudo: True
-  service: name=php5-fpm state=restarted
+# - name: Restart php-fpm
+#   sudo: True
+#   service: name=php5-fpm state=restarted

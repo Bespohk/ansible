@@ -8,7 +8,7 @@ python_path_virtualenv: /home/{{ user }}/.virtualenvs
 # Create virtualenvs in python.paths.virtualenv for
 # the following versions. This will need to be adjusted
 # for any distro that installs 3.4 as python3
-# { version: '3.4', command: 'pyvenv-3.4' }
+# { version: '3.4', command: 'pyvenv-3.4', name: '3.4' }
 python_virtualenvs:
-  - { version: '2.7', command: 'virtualenv' }
-  # - { version: '3.4', command: 'pyvenv-3.4' }
+  - { version: '2.7', command: 'virtualenv', name: '2.7' }
+  # - { version: '3.4', command: 'pyvenv-3.4', name: '3.4' }

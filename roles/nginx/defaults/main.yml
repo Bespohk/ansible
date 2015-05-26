@@ -8,13 +8,14 @@ nginx_processes: 4
 nginx_path_www: /var/www
 nginx_path_pid: /run/nginx.pid
 nginx_path_conf: /etc/nginx/nginx.conf
-nginx_path_default_site: /etc/nginx/sites-enabled/default
+nginx_path_sites_enabled: /etc/nginx/sites-enabled
+nginx_path_default_site: "{{ nginx_path_sites_enabled }}/default"
 
 nginx_conf:
   nginx:
-    user: ${nginx_user}
+    user: "{{ nginx_user }}"
     worker_processes: 4
-    pid: ${nginx_path_pid}
+    pid: "{{ nginx_path_pid }}"
   http:
     sendfile: 'on'
     tcp_nopush: 'on'

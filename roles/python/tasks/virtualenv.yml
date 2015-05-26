@@ -10,7 +10,7 @@
 - name: virtualenv | Create default virtualenvs for virtualenv
   pip: >
     name=pep8
-    virtualenv={{ python_path_virtualenv }}/{{ item.version }}
+    virtualenv={{ python_path_virtualenv }}/{{ item.name }}
     virtualenv_command="{{ item.command }} --python=/usr/bin/python{{ item.version }}"
   with_items:
     - "{{ python_virtualenvs }}"
@@ -18,7 +18,7 @@
     - python
 
 - name: virtualenv | Copy wrapper for virtualenv
-  copy: src=venv.sh dest={{ python_path_virtualenv }}/{{ item.version }}/bin/venv.sh mode=0755
+  copy: src=venv.sh dest={{ python_path_virtualenv }}/{{ item.name }}/bin/venv.sh mode=0755
   with_items:
     - "{{ python_virtualenvs }}"
   tags:
