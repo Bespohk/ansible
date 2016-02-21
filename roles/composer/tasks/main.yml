@@ -23,6 +23,7 @@
   become: yes
   shell: >
     mv /tmp/composer.phar {{ composer_path }}
+  when: not composer_bin.stat.exists
   tags: composer
 
 - name: make composer executable
